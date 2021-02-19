@@ -10,4 +10,9 @@ export class MessageService {
   baseURL: string = environment.baseURL;
 
   constructor(private http: HttpClient) { }
+
+  sendMessage(chatId, data)
+  {
+    return this.http.post( this.baseURL + `/sendMessage/${chatId}`, data);
+  }
 }

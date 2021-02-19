@@ -1,41 +1,77 @@
 <app-left-section></app-left-section>
 
- <div class="main vertical-center">
-    <div class="col-md-12 col-sm-12">
-       <div class="login-form">
-          <form>
+<div class="main vertical-center">
+   <div class="col-md-12 col-sm-12">
+      <div class="login-form">
+         <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="form-group">
-                <label for="firstname">First name :</label>
-                <input type="text" class="form-control" placeholder="Type your first name here"
-                id="firstname" >
-             </div>
-             <div class="form-group">
-                <label for="lastname">Last name :</label>
-                <input type="text" class="form-control" placeholder="Type your last name here"
-                id="lastname">
-             </div>
-             <div class="form-group">
-                <label for="age">Age :</label>
-                <input type="number" class="form-control" placeholder="Type your age here" id="age">
-             </div>
-             <div class="form-group">
-                <label for="email">E-mail :</label>
-                <input type="email" class="form-control" placeholder="Type your e-mail adress here"
-                id="email">
-             </div>
-             <div class="form-group">
-                <label for="password">Password :</label>
-                <input type="password" class="form-control" placeholder="Type your password here"
-                id="password">
-             </div>
-             <div class="form-group">
-                <label id="passwordConfirmation">Password confirmation :</label>
-                <input type="password" class="form-control" placeholder="Type your password here"
-                id="passwordConfirmation">
-             </div>
-             <button type="submit" class="btn btn-black btn-block">Register</button>
-             <a routerLink="/login" class="btn btn-secondary btn-block mt-3 text-white">Go back to login page</a>
-          </form>
-       </div>
-    </div>
- </div>
+               <label for="firstname">First name :</label>
+               <input type="text" class="form-control" placeholder="Type your first name here" id="firstname"
+                  formControlName="firstName"
+                  [ngClass]="{'is-invalid': formSubmitted && registerForm.get('firstName').errors, 'is-valid': formSubmitted && !registerForm.get('firstName').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && registerForm.get('firstName').hasError('required')">Please enter your
+                     first name.</div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="lastname">Last name :</label>
+               <input type="text" class="form-control" placeholder="Type your last name here" id="lastname"
+                  formControlName="lastName"
+                  [ngClass]="{'is-invalid': formSubmitted && registerForm.get('lastName').errors, 'is-valid': formSubmitted && !registerForm.get('lastName').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && registerForm.get('lastName').hasError('required')">Please enter your last
+                     name.</div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="age">Age :</label>
+               <input type="number" class="form-control" placeholder="Type your age here" id="age" formControlName="age"
+                  [ngClass]="{'is-invalid': formSubmitted && registerForm.get('age').errors, 'is-valid': formSubmitted && !registerForm.get('age').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && registerForm.get('age').hasError('required')">Please enter your age.
+                  </div>
+                  <div *ngIf="formSubmitted && registerForm.get('age').hasError('min')">Please enter your age > 18.
+                  </div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="email">E-mail :</label>
+               <input type="email" class="form-control" placeholder="Type your e-mail adress here" id="email"
+                  formControlName="email"
+                  [ngClass]="{'is-invalid': formSubmitted && registerForm.get('firstName').errors, 'is-valid': formSubmitted && !registerForm.get('firstName').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && registerForm.get('email').hasError('required')">Please enter your e-mail
+                     address.</div>
+                  <div *ngIf="formSubmitted && registerForm.get('email').hasError('email')">Please enter a valid e-mail
+                     address.</div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="password">Password :</label>
+               <input type="password" class="form-control" placeholder="Type your password here" id="password"
+                  formControlName="password"
+                  [ngClass]="{'is-invalid': formSubmitted && registerForm.get('password').errors, 'is-valid': formSubmitted && !registerForm.get('password').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && registerForm.get('password').hasError('required')">Please enter your
+                     password.</div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label id="passwordConfirmation">Password confirmation :</label>
+               <input type="password" class="form-control" placeholder="Type your password here"
+                  id="passwordConfirmation" formControlName="passwordConfirmation"
+                  [ngClass]="{'is-invalid': formSubmitted && registerForm.get('passwordConfirmation').errors, 'is-valid': formSubmitted && !registerForm.get('passwordConfirmation').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && registerForm.get('passwordConfirmation').hasError('required')">Please
+                     enter your password confirmation.</div>
+                  <div *ngIf="formSubmitted && registerForm?.errors?.misMatch">
+                     Password confirmation does not much.</div>
+               </div>
+            </div>
+            <button type="submit" class="btn btn-black btn-block">Register</button>
+            <a routerLink="/login" class="btn btn-secondary btn-block mt-3 text-white">Go back to login page</a>
+         </form>
+      </div>
+   </div>
+</div>

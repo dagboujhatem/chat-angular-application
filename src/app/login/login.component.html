@@ -1,22 +1,34 @@
 <app-left-section></app-left-section>
 
- <div class="main vertical-center">
-    <div class="col-md-12 col-sm-12">
-       <div class="login-form">
-          <form>
-             <div class="form-group">
-                <label for="email">E-mail :</label>
-                <input type="email" class="form-control" placeholder="Type your e-mail adress here"
-                id="email">
-             </div>
-             <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Type your password here"
-                id="password">
-             </div>
-             <button type="submit" class="btn btn-black btn-block">Login</button>
-             <a routerLink="/register" class="btn btn-secondary btn-block mt-3 text-white">Register</a>
-          </form>
-       </div>
-    </div>
- </div>
+<div class="main vertical-center">
+   <div class="col-md-12 col-sm-12">
+      <div class="login-form">
+         <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+               <label for="email">E-mail :</label>
+               <input type="email" class="form-control" placeholder="Type your e-mail adress here" id="email"
+                  formControlName="email"
+                  [ngClass]="{'is-invalid': formSubmitted && loginForm.get('email').errors, 'is-valid': formSubmitted && !loginForm.get('email').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && loginForm.get('email').hasError('required')">Please enter your e-mail
+                     address.</div>
+                  <div *ngIf="formSubmitted && loginForm.get('email').hasError('email')">Please enter a valid e-mail
+                     address.</div>
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="password">Password</label>
+               <input type="password" class="form-control" placeholder="Type your password here" id="password"
+                  formControlName="password"
+                  [ngClass]="{'is-invalid': formSubmitted && loginForm.get('password').errors, 'is-valid': formSubmitted && !loginForm.get('password').errors}">
+               <div class="d-block invalid-feedback">
+                  <div *ngIf="formSubmitted && loginForm.get('password').hasError('required')">Please enter your
+                     password.</div>
+               </div>
+            </div>
+            <button type="submit" class="btn btn-black btn-block">Login</button>
+            <a routerLink="/register" class="btn btn-secondary btn-block mt-3 text-white">Register</a>
+         </form>
+      </div>
+   </div>
+</div>

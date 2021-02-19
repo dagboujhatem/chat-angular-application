@@ -1,0 +1,29 @@
+
+.main-head{
+    height: 150px;
+    background: #FFF;
+}
+
+.main {
+    padding: 0px 10px;
+}
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+
+    display: flex;
+    align-items: center;
+  }
+
+@media screen and (min-width: 768px){
+    .main{
+        margin-left: 40%; 
+    }
+}
+
+
+.btn-black{
+    background-color: #000 !important;
+    color: #fff;
+}

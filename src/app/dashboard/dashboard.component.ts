@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   inboxList;
   chatId;
   messages: any = [];
+  isLoading = false;
 
   constructor(private messageService: MessageService,
      private chatService: ChatService) { }
@@ -45,8 +46,10 @@ export class DashboardComponent implements OnInit {
   }
 
   loadOldMessages() {
+    this.isLoading = true;
     this.messageService.loadOldMessages(this.chatId).subscribe(response => {
       this.messages = response;
+      this.isLoading = false;
     });
   }
 

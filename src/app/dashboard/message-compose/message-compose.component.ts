@@ -13,9 +13,10 @@ import { TimeAgoPipe } from 'src/app/utils/TimeAgoPipe';
 export class MessageComposeComponent implements OnInit {
 
   @Input() chatId;
+  @Input() messages: any = [];
+  @Input() isLoading;
   content;
   socket;
-  @Input() messages: any = [];
   currentUserId : string = this.getCurrentUserId();
   
   constructor(private messageService: MessageService) { }

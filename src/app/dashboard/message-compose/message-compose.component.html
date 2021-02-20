@@ -1,4 +1,5 @@
 <div class="msg_history">
+    <div class="loader" *ngIf="isLoading"></div>
     <div *ngFor="let message of messages">
         <div class="incoming_msg" *ngIf="message.user != currentUserId">
             <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png"

@@ -8,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class InboxComponent implements OnInit {
 
   @Input() inbox;
-  @Output() newChatEvent = new EventEmitter<string>(); 
+  @Output() newChatEvent = new EventEmitter<string>();
   
   constructor() { }
 

@@ -24,7 +24,7 @@ import { TokenInterceptorService } from './providers/token-interceptor.service';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     {

@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   messages: any = [];
   isLoading = false;
   chatWith: string;
+  searchText;
 
   constructor(private messageService: MessageService,
      private chatService: ChatService) { }

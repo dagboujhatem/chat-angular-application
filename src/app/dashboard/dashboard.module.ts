@@ -7,10 +7,11 @@ import { MessageComposeComponent } from './message-compose/message-compose.compo
 import { InboxComponent } from './inbox/inbox.component';
 import { FormsModule } from '@angular/forms';
 import { TimeAgoPipe } from '../utils/TimeAgoPipe';
+import { FilterPipe } from '../utils/filter.pipe';
 
 
 @NgModule({
-  declarations: [DashboardComponent, MessageComposeComponent, InboxComponent, TimeAgoPipe],
+  declarations: [DashboardComponent, MessageComposeComponent, InboxComponent, TimeAgoPipe, FilterPipe],
   imports: [
     CommonModule,
     DashboardRoutingModule,

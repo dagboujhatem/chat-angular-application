@@ -17,7 +17,7 @@ export class InboxComponent implements OnInit {
 
   startChat()
   {
-    this.newChatEvent.emit(this.inbox._id);
+    this.newChatEvent.emit(this.inbox);
   }
 
 }

@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
   chatId;
   messages: any = [];
   isLoading = false;
+  chatWith: string;
 
   constructor(private messageService: MessageService,
      private chatService: ChatService) { }
@@ -28,12 +29,13 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  startNewChat(id) {
+  startNewChat(inbox) {
     const token = localStorage.getItem('token');
+    this.chatWith = inbox.firstName + ' ' + inbox.lastName;
     if (token !== null) {
       const decoded: any = jwt_decode(token);
       const authentificatedUserId = decoded.userId;
-      this.createOrGetNewChat(id, authentificatedUserId);
+      this.createOrGetNewChat(inbox._id, authentificatedUserId);
     }
 
   }

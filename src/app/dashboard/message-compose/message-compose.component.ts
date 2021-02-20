@@ -15,6 +15,7 @@ export class MessageComposeComponent implements OnInit {
   @Input() chatId;
   @Input() messages: any = [];
   @Input() isLoading;
+  @Input() chatWith;
   content;
   socket;
   currentUserId : string = this.getCurrentUserId();

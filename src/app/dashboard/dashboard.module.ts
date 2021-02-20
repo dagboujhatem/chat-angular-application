@@ -8,14 +8,15 @@ import { InboxComponent } from './inbox/inbox.component';
 import { FormsModule } from '@angular/forms';
 import { TimeAgoPipe } from '../utils/TimeAgoPipe';
 import { FilterPipe } from '../utils/filter.pipe';
-
+import { AvatarModule } from 'ngx-avatar';
 
 @NgModule({
   declarations: [DashboardComponent, MessageComposeComponent, InboxComponent, TimeAgoPipe, FilterPipe],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FormsModule
+    FormsModule,
+    AvatarModule
   ],
   providers: [TimeAgoPipe]
 })

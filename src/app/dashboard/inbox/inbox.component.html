@@ -1,7 +1,8 @@
 <div class="chat_list active_chat">
     <div class="chat_people">
-        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png"
-                alt="sunil">
+        <div class="chat_img">
+             <!-- <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
+             <ngx-avatar name="{{ inbox.firstName + ' ' + inbox.lastName }}" size="33"></ngx-avatar>
         </div>
         <div class="chat_ib" (click)="startChat()">
             <h5>{{ inbox.firstName + ' ' + inbox.lastName }} <span class="chat_date">Dec 25</span></h5>

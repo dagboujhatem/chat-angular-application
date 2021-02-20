@@ -6,14 +6,16 @@ import { DashboardComponent } from './dashboard.component';
 import { MessageComposeComponent } from './message-compose/message-compose.component';
 import { InboxComponent } from './inbox/inbox.component';
 import { FormsModule } from '@angular/forms';
+import { TimeAgoPipe } from '../utils/TimeAgoPipe';
 
 
 @NgModule({
-  declarations: [DashboardComponent, MessageComposeComponent, InboxComponent],
+  declarations: [DashboardComponent, MessageComposeComponent, InboxComponent, TimeAgoPipe],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FormsModule
-  ]
+  ],
+  providers: [TimeAgoPipe]
 })
 export class DashboardModule { }

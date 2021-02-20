@@ -15,4 +15,9 @@ export class MessageService {
   {
     return this.http.post( this.baseURL + `/sendMessage/${chatId}`, data);
   }
+
+  loadOldMessages(chatId)
+  {
+    return this.http.get( this.baseURL + `/loadOldMessages/${chatId}`);
+  }
 }

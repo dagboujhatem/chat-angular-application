@@ -2,12 +2,11 @@
     <div class="chat_people">
         <div class="chat_img">
              <!-- <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
-             <ngx-avatar name="{{ inbox.firstName + ' ' + inbox.lastName }}" size="52"></ngx-avatar>
+             <ngx-avatar name="{{ inbox.userName }}" size="52"></ngx-avatar>
         </div>
         <div class="chat_ib" (click)="startChat()">
-            <h5>{{ inbox.firstName + ' ' + inbox.lastName }} <span class="chat_date">Dec 25</span></h5>
-            <p>Test, which is a new approach to have all solutions
-                astrology under one roof.</p>
+            <h5>{{ inbox.userName }} <span class="chat_date">{{ inbox.createdAt | date : 'MMMM d, y'}}</span></h5>
+            <p>{{ inbox.message }}</p>
         </div>
     </div>
 </div>

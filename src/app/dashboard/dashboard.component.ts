@@ -32,7 +32,7 @@ export class DashboardComponent implements OnInit {
 
   startNewChat(inbox) {
     const token = localStorage.getItem('token');
-    this.chatWith = inbox.firstName + ' ' + inbox.lastName;
+    this.chatWith = inbox.userName;
     if (token !== null) {
       const decoded: any = jwt_decode(token);
       const authentificatedUserId = decoded.userId;

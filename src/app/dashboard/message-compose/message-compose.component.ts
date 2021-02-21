@@ -3,7 +3,6 @@ import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 import { MessageService } from '../services/message.service';
 import { io } from "socket.io-client";
-import { TimeAgoPipe } from 'src/app/utils/TimeAgoPipe';
 
 @Component({
   selector: 'app-message-compose',

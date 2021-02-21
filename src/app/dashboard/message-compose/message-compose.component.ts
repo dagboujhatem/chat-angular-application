@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import jwt_decode from 'jwt-decode';
 import { environment } from 'src/environments/environment';
 import { MessageService } from '../services/message.service';
@@ -9,8 +9,8 @@ import { io } from "socket.io-client";
   templateUrl: './message-compose.component.html',
   styleUrls: ['./message-compose.component.css']
 })
-export class MessageComposeComponent implements OnInit {
-
+export class MessageComposeComponent implements OnInit, AfterViewChecked  {
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @Input() chatId;
   @Input() messages: any = [];
   @Input() isLoading;
@@ -24,6 +24,17 @@ export class MessageComposeComponent implements OnInit {
   ngOnInit(): void {
     this.setupSocketConnection();
   }
+
+  ngAfterViewChecked() {        
+    this.scrollToBottom();        
+  } 
+  // link : https://stackoverflow.com/questions/35232731/angular-2-scroll-to-bottom-chat-style
+  scrollToBottom(): void {
+    try {
+        this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }                 
+  }
+
   setupSocketConnection() {
     this.socket = io(environment.socketURL, {transports: ['websocket']});
     this.socket.on('newMessageSended', (chat) => {

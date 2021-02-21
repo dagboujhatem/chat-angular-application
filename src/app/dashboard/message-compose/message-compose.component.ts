@@ -18,6 +18,7 @@ export class MessageComposeComponent implements OnInit, AfterViewChecked  {
   content;
   socket;
   currentUserId : string = this.getCurrentUserId();
+  submitted = false;
   
   constructor(private messageService: MessageService) { }
 
@@ -73,6 +74,7 @@ export class MessageComposeComponent implements OnInit, AfterViewChecked  {
   }
 
   sendMessage(chatId, data){
+    this.submitted = false;
     this.messageService.sendMessage(chatId, data).subscribe((response: any)=>{
       this.content = '';
     });

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from './services/chat.service';
 import jwt_decode from 'jwt-decode';
 import { MessageService } from './services/message.service';
+import { environment } from 'src/environments/environment';
+import { io } from 'socket.io-client';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,12 +18,14 @@ export class DashboardComponent implements OnInit {
   isLoading = false;
   chatWith: string;
   searchText;
+  socket;
 
   constructor(private messageService: MessageService,
      private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.loadInbox();
+    this.initNotificationSocket();
   }
 
   loadInbox() {
@@ -31,6 +35,7 @@ export class DashboardComponent implements OnInit {
   }
 
   startNewChat(inbox) {
+    this.markAsReaded(inbox._id)
     const token = localStorage.getItem('token');
     this.chatWith = inbox.userName;
     if (token !== null) {
@@ -38,7 +43,6 @@ export class DashboardComponent implements OnInit {
       const authentificatedUserId = decoded.userId;
       this.createOrGetNewChat(inbox._id, authentificatedUserId);
     }
-
   }
 
   createOrGetNewChat(idUser1, idUser2) {
@@ -54,6 +58,31 @@ export class DashboardComponent implements OnInit {
       this.messages = response;
       this.isLoading = false;
     });
+  }
+
+  initNotificationSocket()
+  {
+    this.socket = io(environment.socketURL, {transports: ['websocket']});
+    this.socket.on('newMessageNotification', (message) => {
+      const token = localStorage.getItem('token');
+      if (token !== null) {
+        const decoded: any = jwt_decode(token);
+        const authentificatedUserId = decoded.userId;
+        if(message.user != authentificatedUserId)
+        {
+          let index = this.inboxList.findIndex(inbox=> inbox._id == message.user);
+          this.inboxList[index].hasNotification = true;
+          this.inboxList[index].nubmerOfMessage += 1;
+        }
+      }     
+    });
+  }
+
+  markAsReaded(id)
+  {
+    let index = this.inboxList.findIndex(inbox=> inbox._id == id);
+    this.inboxList[index].hasNotification = false;
+    this.inboxList[index].nubmerOfMessage = 0;
   }
 
 }

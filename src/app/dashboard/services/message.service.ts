@@ -18,6 +18,6 @@ export class MessageService {
 
   loadOldMessages(chatId)
   {
-    return this.http.get( this.baseURL + `/loadOldMessages/${chatId}/10`);
+    return this.http.get( this.baseURL + `/loadOldMessages/${chatId}/100`);
   }
 }

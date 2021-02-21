@@ -1,12 +1,12 @@
-<div class="chat_list active_chat">
+<div class="chat_list active_chat" (click)="startChat()">
     <div class="chat_people">
         <div class="chat_img">
              <!-- <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> -->
              <ngx-avatar name="{{ inbox.userName }}" size="52"></ngx-avatar>
         </div>
-        <div class="chat_ib" (click)="startChat()">
+        <div class="chat_ib">
             <h5>{{ inbox.userName }} <span class="chat_date">{{ inbox.createdAt | date : 'MMMM d, y'}}</span></h5>
-            <p>{{ inbox.message }}</p>
+            <p>{{ inbox.message }} <span *ngIf="inbox.hasNotification" class="badge badge-danger chat_notification">{{ inbox.nubmerOfMessage }}</span></p>
         </div>
     </div>
 </div>

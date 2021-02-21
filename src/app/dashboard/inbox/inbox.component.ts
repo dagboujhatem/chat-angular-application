@@ -9,6 +9,7 @@ export class InboxComponent implements OnInit {
 
   @Input() inbox;
   @Output() newChatEvent = new EventEmitter<string>();
+
   
   constructor() { }
 

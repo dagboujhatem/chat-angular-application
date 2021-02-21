@@ -22,7 +22,7 @@ img{ max-width:100%;}
   .srch_bar {
     display: inline-block;
     text-align: right;
-    width: 60%; padding:
+    width: 60%;
   }
   .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
   
@@ -53,7 +53,9 @@ img{ max-width:100%;}
     padding: 0 0 0 15px;
     width: 88%;
   }
-  
+  .chat_ib .chat_notification{
+    float: right;
+  }
   .chat_people{ overflow:hidden; clear:both;}
   .chat_list {
     border-bottom: 1px solid #c4c4c4;

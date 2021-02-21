@@ -22,7 +22,7 @@ img{ max-width:100%;}
   .srch_bar {
     display: inline-block;
     text-align: right;
-    width: 60%; padding:
+    width: 60%;
   }
   .headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
   
@@ -52,6 +52,9 @@ img{ max-width:100%;}
     float: left;
     padding: 0 0 0 15px;
     width: 88%;
+  }
+  .chat_ib .chat_notification{
+    float: right;
   }
   
   .chat_people{ overflow:hidden; clear:both;}
@@ -132,7 +135,7 @@ img{ max-width:100%;}
     top: 11px;
     width: 33px;
   }
-  .messaging { padding: 0 0 50px 0;}
+  /* .messaging { padding: 0 0 50px 0;} */
   .msg_history {
     height: 516px;
     overflow-y: auto;

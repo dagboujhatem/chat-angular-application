@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToasterService } from 'angular2-toaster';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   formSubmitted: boolean = false;
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private toasterService: ToasterService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -33,6 +35,13 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('token', response.token);
       // redirect to dashboard
       this.router.navigateByUrl('/dashboard');
+    },
+    (error: any)=>{
+      console.log(error);
+      
+      if (error.status === 404) {
+        this.toasterService.pop('error', 'Veuillez vérifier votre e-mail ou votre mot de passe!', error.error.message);
+      }
     });
   }
 

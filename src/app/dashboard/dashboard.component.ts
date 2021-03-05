@@ -73,6 +73,7 @@ export class DashboardComponent implements OnInit {
           let index = this.inboxList.findIndex(inbox=> inbox._id == message.user);
           this.inboxList[index].hasNotification = true;
           this.inboxList[index].nubmerOfMessage += 1;
+          this.playAudio();
         }
       }     
     });
@@ -83,6 +84,13 @@ export class DashboardComponent implements OnInit {
     let index = this.inboxList.findIndex(inbox=> inbox._id == id);
     this.inboxList[index].hasNotification = false;
     this.inboxList[index].nubmerOfMessage = 0;
+  }
+
+  playAudio(){
+    let audio = new Audio();
+    audio.src = "../../../assets/audio/facebook-new-message-pop-ding.wav";
+    audio.load();
+    audio.play();
   }
 
 }

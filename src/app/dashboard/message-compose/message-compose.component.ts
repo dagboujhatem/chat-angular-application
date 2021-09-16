@@ -41,6 +41,9 @@ export class MessageComposeComponent implements OnInit, AfterViewChecked  {
     this.socket.on('newMessageSended', (chat) => {
       this.messages.push(chat);
     });
+    this.socket.on('typing', (data) => {
+      console.log(data);      
+    });
   }
 
   getCurrentUserId()
@@ -77,6 +80,16 @@ export class MessageComposeComponent implements OnInit, AfterViewChecked  {
     this.submitted = false;
     this.messageService.sendMessage(chatId, data).subscribe((response: any)=>{
       this.content = '';
+    });
+  }
+
+  updateTyping()
+  {
+    const  isTyping =  this.content.length > 0;
+    console.log(isTyping);
+    this.socket.emit("typing", {
+      isTyping: this.content.length > 0,
+      nick: "userName",
     });
   }
 
